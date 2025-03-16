@@ -1,7 +1,7 @@
 # Directories
 videos
-challenge_data.csv
 dataset.zip
+challenge_data_answers.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
