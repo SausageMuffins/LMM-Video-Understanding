@@ -41,9 +41,9 @@ def convert_csv(input_file, output_file, answer_column):
 def main():
     # Set up command line arguments
     parser = argparse.ArgumentParser(description='Convert CSV to upload format')
-    parser.add_argument('--input', default='challenge_data_baseline.csv', 
+    parser.add_argument('--input', default='results/challenge_data_baseline.csv', 
                         help='Input CSV file (default: challenge_data_baseline.csv)')
-    parser.add_argument('--output', default='pred_baseline.csv', 
+    parser.add_argument('--output', default='submissions/pred_baseline.csv', 
                         help='Output CSV file (default: pred_baseline.csv)')
     parser.add_argument('--answer-column', default='answer', 
                         help='Column name to map to "pred" in the output (default: answer)')

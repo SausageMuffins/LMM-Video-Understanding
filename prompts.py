@@ -287,3 +287,87 @@ def create_video_qa_prompt_v2(
     prompt += "\nTHINKING STEPS: "
     prompt += "\n\nFINAL ANSWER: "
     return prompt
+
+def create_video_qa_prompt_v3(
+    video_title,
+    video_description=None,
+    comments=None,
+    captions=None,
+    channel_name=None,
+    question=None
+):
+    """
+    Constructs a prompt for a video question-answering specialist with enhanced video descriptions.
+    
+    Parameters:
+    -----------
+    video_title : str
+        The title of the video
+    video_description : str, optional
+        The description of the video
+    comments : list of dict, optional
+        List of comment dictionaries with keys 'Author' and 'Comment'
+    captions : str, optional
+        Video captions in SRT format or as plain text
+    channel_name : str, optional
+        Name of the YouTube channel that posted the video
+    question : str, optional
+        The question to be answered about the video
+        
+    Returns:
+    --------
+    str
+        The formatted prompt that gracefully handles missing data
+    """
+    
+    # Start building the prompt
+    prompt = "You are a video question-answer specialist. You are provided context from a YouTube video. "
+    prompt += "Answer the question at the end. Do not output any timestamps."
+    prompt += "First, describe in detail what happens at the start, middle, and end of the video. "
+    prompt += "Then, think carefully step-by-step and put your thoughts under 'THINKING STEPS'. "
+    prompt += "After considering all information, provide a final answer under 'FINAL ANSWER'. Respond by filling up the sections in the response template.\n\n"
+    # Always include the title since it's required
+    prompt += "VIDEO INFORMATION:\n"
+    prompt += f"Title: {video_title}\n"
+    
+    # Add channel name if available
+    if channel_name:
+        prompt += f"Channel: {channel_name}\n"
+    
+    # Add description if available
+    if video_description:
+        prompt += "\nDESCRIPTION:\n"
+        prompt += f"{video_description}\n"
+    
+    # Process and add captions if available
+    if captions and isinstance(captions, str):  # Check if captions is a valid string
+        # Check if captions look like SRT format (contains --> timestamp markers)
+        if "-->" in captions:
+            cleaned_captions = process_srt_captions(captions)
+            prompt += "\nCAPTIONS (TRANSCRIPT):\n"
+            prompt += cleaned_captions + "\n"
+        else:
+            # Treat as plain text captions
+            prompt += "\nCAPTIONS (TRANSCRIPT):\n"
+            prompt += captions + "\n"
+    elif captions is None or pd.isna(captions):  # If captions are missing (None or NaN)
+        prompt += ""
+
+    # Process and add comments if available
+    if comments and len(comments) > 0:
+        prompt += "\nTOP COMMENTS:\n"
+        formatted_comments = format_comments(comments)
+        prompt += formatted_comments + "\n"
+    
+    # Add the question if available
+    if question:
+        prompt += "\nQUESTION:\n"
+        prompt += f"{question}\n"
+    
+    prompt += "\n\nRESPONSE TEMPLATE: "
+    prompt += "\nVIDEO START DESCRIPTION: "
+    prompt += "\n\nVIDEO MIDDLE DESCRIPTION: "
+    prompt += "\n\nVIDEO END DESCRIPTION: "
+    prompt += "\n\nTHINKING STEPS: "
+    prompt += "\n\nFINAL ANSWER: "
+    return prompt

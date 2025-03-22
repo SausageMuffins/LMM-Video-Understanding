@@ -85,6 +85,7 @@ def upload_and_process_video(video_path):
         print(f"Error uploading/processing video: {str(e)}")
         return None
 
+
 def main():
     """
     Main function to run the video inference pipeline.
@@ -122,16 +123,11 @@ def main():
         action="store_true",
         help="If set, only the first few videos will be processed."
     )
-    # flags for prompt version
+    # flag to use v2 prompt
     parser.add_argument(
         "--v2",
         action="store_true",
         help="If set, use the v2 prompt."
-    )
-    parser.add_argument(
-        "--v3",
-        action="store_true",
-        help="If set, use the v3 prompt."
     )
     # Temperature
     parser.add_argument(
@@ -160,14 +156,10 @@ def main():
     # -----------------------------
     # Read input CSV files
     # -----------------------------
-    # print temperature and prompt version
+    # print temperature and if using v2
     print(f"Temperature: {args.temperature}")
     if args.v2:
         print("Using v2 prompt.")
-    elif args.v3:
-        print("Using v3 prompt.")
-    else:
-        print("Using default prompt.")
     
     print(f"Reading challenge data from {args.challenge_data_path}")
     df_challenge_data = pd.read_csv(args.challenge_data_path).copy()
@@ -175,17 +167,9 @@ def main():
     print(f"Reading video metadata from {args.video_metadata_path}")
     df_video_metadata = pd.read_csv(args.video_metadata_path).copy()
 
-    # Add all needed answer columns if missing
+    # Add answer column if missing
     if "answer" not in df_challenge_data.columns:
         df_challenge_data["answer"] = ""
-    if "thinking_steps" not in df_challenge_data.columns:
-        df_challenge_data["thinking_steps"] = ""
-    if "video_start" not in df_challenge_data.columns:
-        df_challenge_data["video_start"] = ""
-    if "video_middle" not in df_challenge_data.columns:
-        df_challenge_data["video_middle"] = ""
-    if "video_end" not in df_challenge_data.columns:
-        df_challenge_data["video_end"] = ""
 
     processed_videos = {}
 
@@ -241,17 +225,10 @@ def main():
         comments_filename = f"{clean_title}.csv"
         comments = read_comments_file(comments_filename, args.comments_dir)
         
-        # Choose the appropriate prompt version
-        if args.v3:
-            prompt_text = prompts.create_video_qa_prompt_v3(
-                video_title=video_title,
-                video_description=video_description,
-                comments=comments,
-                captions=captions if captions else None,
-                channel_name=channel_name,
-                question=combined_question
-            )
-        elif args.v2:
+        # print(f"Captions: {captions}")
+        # print(f"Comments: {len(comments)}")     
+        # Create the prompt
+        if args.v2:
             prompt_text = prompts.create_video_qa_prompt_v2(
                 video_title=video_title,
                 video_description=video_description,
@@ -269,7 +246,6 @@ def main():
                 channel_name=channel_name,
                 question=combined_question
             )
-            
         if args.debug:
             # print url and question text
             print(f"URL: {youtube_url}")
@@ -295,72 +271,35 @@ def main():
         # Generate response from Gemini
         print("Making Gemini inference request...")
         response = model.generate_content(
-            # tried [video_file, prompt_text] but resulted in perf. drop
-            # from 47.53% --> 46.13% in v3-prompt + slow-vid seting 
             [prompt_text, video_file],
             request_options={"timeout": 600}
         )
         
-        try:
-            answer = response.text.strip()
-        except Exception as e:
-            print(f"Error processing response: {str(e)}")
-            answer = str(response)
-            continue
-        
-        # Initialize all fields
-        video_start = ""
-        video_middle = ""
-        video_end = ""
+        answer = response.text.strip()
+        # If using v2, extract thinking after 'THINKING STEPS' and the output after FINAL ANSWER:
         thinking_steps = ""
         final_answer = ""
         
-        # Extract fields based on prompt version
-        if args.v3:
-            # Try to extract all five fields from v3 output
-            start_match = re.search(r"VIDEO START DESCRIPTION:(.*?)(?=VIDEO MIDDLE DESCRIPTION:|$)", answer, re.DOTALL)
-            if start_match:
-                video_start = start_match.group(1).strip()
-            
-            middle_match = re.search(r"VIDEO MIDDLE DESCRIPTION:(.*?)(?=VIDEO END DESCRIPTION:|$)", answer, re.DOTALL)
-            if middle_match:
-                video_middle = middle_match.group(1).strip()
-            
-            end_match = re.search(r"VIDEO END DESCRIPTION:(.*?)(?=THINKING STEPS:|$)", answer, re.DOTALL)
-            if end_match:
-                video_end = end_match.group(1).strip()
-            
-            thinking_match = re.search(r"THINKING STEPS:(.*?)(?=FINAL ANSWER:|$)", answer, re.DOTALL)
-            if thinking_match:
-                thinking_steps = thinking_match.group(1).strip()
-            
-            answer_match = re.search(r"FINAL ANSWER:(.*?)$", answer, re.DOTALL)
-            if answer_match:
-                final_answer = answer_match.group(1).strip()
+        if args.v2:
+            # Try to split on "THINKING STEPS:"
+            parts = answer.split("THINKING STEPS:")
+            if len(parts) > 1:
+                # We have at least two parts, so try to split the second part on "FINAL ANSWER:"
+                sub_parts = parts[1].split("FINAL ANSWER:")
+                if len(sub_parts) > 1:
+                    thinking_steps = sub_parts[0].strip()
+                    final_answer = sub_parts[1].strip()
+                else:
+                    print("Warning: Could not extract 'FINAL ANSWER:' from the text. Falling back to entire answer.")
+                    thinking_steps = ""
+                    final_answer = answer
             else:
-                print("Warning: Could not extract 'FINAL ANSWER:' from the text. Falling back to entire answer.")
-                final_answer = answer
-                
-        elif args.v2:
-            # Extract just thinking and answer from v2 output
-            thinking_match = re.search(r"THINKING STEPS:(.*?)(?=FINAL ANSWER:|$)", answer, re.DOTALL)
-            if thinking_match:
-                thinking_steps = thinking_match.group(1).strip()
-            
-            answer_match = re.search(r"FINAL ANSWER:(.*?)$", answer, re.DOTALL)
-            if answer_match:
-                final_answer = answer_match.group(1).strip()
-            else:
-                print("Warning: Could not extract 'FINAL ANSWER:' from the text. Falling back to entire answer.")
+                print("Warning: Could not extract 'THINKING STEPS:' from the text. Falling back to entire answer.")
+                thinking_steps = ""
                 final_answer = answer
         else:
-            # For v1, just use the entire answer
             final_answer = answer
-        
-        # Store all extracted fields
-        df_challenge_data.at[idx, "video_start"] = video_start
-        df_challenge_data.at[idx, "video_middle"] = video_middle
-        df_challenge_data.at[idx, "video_end"] = video_end
+            thinking_steps = ""
         df_challenge_data.at[idx, "thinking_steps"] = thinking_steps
         df_challenge_data.at[idx, "answer"] = final_answer
         
@@ -368,26 +307,10 @@ def main():
         print("-" * 50)
         # print question
         print(f"Question: {combined_question}")
-        # if v3, print all fields
-        if args.v3:
-            print("-" * 50)
-            print(f"VIDEO START DESCRIPTION: {video_start}")
-            print("-" * 50)
-            print(f"VIDEO MIDDLE DESCRIPTION: {video_middle}")
-            print("-" * 50)
-            print(f"VIDEO END DESCRIPTION: {video_end}")
-            print("-" * 50)
-            print(f"THINKING STEPS: {thinking_steps}")
-        # v2, print thinking and answer
-        elif args.v2:
-            print("-" * 50)
-            print(f"THINKING STEPS: {thinking_steps}")
-
-        
-        
         print("-" * 50)
         print(final_answer[:200] + "..." if len(final_answer) > 200 else final_answer)
         print("-" * 50)
+
 
     # -----------------------------
     # Save the results
@@ -395,6 +318,7 @@ def main():
     print(f"\nSaving results to {args.output_csv_path}")
     df_challenge_data.to_csv(args.output_csv_path, index=False)
     print(f"Inference pipeline completed. Answers saved to: {args.output_csv_path}")
-    
+
+
 if __name__ == "__main__":
     main()
