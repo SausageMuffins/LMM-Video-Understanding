@@ -3,3 +3,7 @@ torch
 av
 numpy
 pandas
+llava
+pyav
+einops
+open-clip-torch
