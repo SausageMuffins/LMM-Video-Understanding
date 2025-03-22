@@ -7,3 +7,5 @@ llava
 pyav
 einops
 open-clip-torch
+google-generativeai
+moviepy
