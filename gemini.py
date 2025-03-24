@@ -140,7 +140,24 @@ def main():
         default=1.0,
         help="Temperature value for sampling text generation (default: 0.5)."
     )
+    # multi-vid: Adds multiple vids into prompt
+    parser.add_argument(
+        "--multi-vid",
+        action="store_true",
+        help="If set, use multiple videos in the prompt."
+    )
+    # add caution_prompt
+    parser.add_argument(
+        "--caution_prompt",
+        action="store_true",
+        help="If set, add caution prompt to the prompt."
+    )
     args = parser.parse_args()
+    
+    # print args in a nice format
+    print(f"Arguments:")
+    for arg in vars(args):
+        print(f"  {arg}: {getattr(args, arg)}")
 
     # -----------------------------
     # Load environment and configure Gemini
@@ -249,7 +266,8 @@ def main():
                 comments=comments,
                 captions=captions if captions else None,
                 channel_name=channel_name,
-                question=combined_question
+                question=combined_question,
+                caution_prompt=args.caution_prompt
             )
         elif args.v2:
             prompt_text = prompts.create_video_qa_prompt_v2(
@@ -294,10 +312,13 @@ def main():
         
         # Generate response from Gemini
         print("Making Gemini inference request...")
+        input_data = [prompt_text, video_file]
+        if args.multi_vid:
+            input_data = [video_file, prompt_text, video_file]
         response = model.generate_content(
             # tried [video_file, prompt_text] but resulted in perf. drop
             # from 47.53% --> 46.13% in v3-prompt + slow-vid seting 
-            [prompt_text, video_file],
+            input_data,
             request_options={"timeout": 600}
         )
         
