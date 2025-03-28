@@ -152,6 +152,19 @@ def main():
         action="store_true",
         help="If set, add caution prompt to the prompt."
     )
+    # rate limit for gemini
+    parser.add_argument(
+        "--rate_limit",
+        type=int,
+        default=0,
+        help="Rate limit for Gemini API (default: 0)."
+    )
+    # model name
+    parser.add_argument(
+        "--model_name",
+        default="models/gemini-2.0-flash",
+        help="Model name for Gemini API (default: models/gemini-2.0-flash)."
+    )
     args = parser.parse_args()
     
     # print args in a nice format
@@ -203,13 +216,24 @@ def main():
         df_challenge_data["video_middle"] = ""
     if "video_end" not in df_challenge_data.columns:
         df_challenge_data["video_end"] = ""
+        
+    # -----------------------------
+    # Resume from existing output CSV if present
+    # -----------------------------
+    if os.path.exists(args.output_csv_path):  # <-- Added for resumption
+        print(f"Found existing output CSV at {args.output_csv_path}. Resuming from last saved row.")
+        df_existing = pd.read_csv(args.output_csv_path)
+        # For any columns that overlap, copy over existing data
+        for col in ["answer", "thinking_steps", "video_start", "video_middle", "video_end"]:
+            if col in df_existing.columns:
+                df_challenge_data[col] = df_existing[col]
 
     processed_videos = {}
 
     # -----------------------------
     # Set up the Gemini model
     # -----------------------------
-    model = genai.GenerativeModel(model_name="models/gemini-2.0-flash",
+    model = genai.GenerativeModel(model_name=args.model_name,
                                   generation_config={"temperature": args.temperature})
 
     # -----------------------------
@@ -218,6 +242,11 @@ def main():
     max_videos = 5  # how many videos to process in debug mode
 
     for idx, row in df_challenge_data.iterrows():
+        # Skip if there's already an answer from a previous run  
+        if pd.notna(row["answer"]) and row["answer"].strip() != "":
+            print(f"Skipping QID={row['qid']} as it already has an answer.")
+            continue
+        
         # If debug mode is on and we've processed enough examples, stop
         if args.debug and idx >= max_videos:
             print("\n[DEBUG] Reached debug limit of videos. Stopping early.")
@@ -310,6 +339,8 @@ def main():
                 print(f"Skipping video due to processing error: {video_path}")
                 continue
         
+        
+        
         # Generate response from Gemini
         print("Making Gemini inference request...")
         input_data = [prompt_text, video_file]
@@ -322,11 +353,18 @@ def main():
             request_options={"timeout": 600}
         )
         
+        # sleep for rate limit
+        if args.rate_limit > 0:
+            print(f"Sleeping for {args.rate_limit} seconds...")
+            time.sleep(args.rate_limit)
+        
+        
         try:
             answer = response.text.strip()
         except Exception as e:
             print(f"Error processing response: {str(e)}")
             answer = str(response)
+            print(f"Response: {answer}")
             continue
         
         # Initialize all fields
@@ -409,9 +447,14 @@ def main():
         print("-" * 50)
         print(final_answer[:200] + "..." if len(final_answer) > 200 else final_answer)
         print("-" * 50)
+        
+        # Save partial progress after each row  # <-- Added for resumption
+        df_challenge_data.to_csv(args.output_csv_path, index=False)
+        
+        
 
     # -----------------------------
-    # Save the results
+    # Final save (though we've been saving after each iteration)
     # -----------------------------
     print(f"\nSaving results to {args.output_csv_path}")
     df_challenge_data.to_csv(args.output_csv_path, index=False)
