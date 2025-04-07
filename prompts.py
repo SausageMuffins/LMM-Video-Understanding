@@ -304,6 +304,7 @@ def create_video_qa_prompt_v3(
     channel_name=None,
     question=None,
     caution_prompt=False,
+    detailed_response=False,
 ):
     """
     Constructs a prompt for a video question-answering specialist with enhanced video descriptions.
@@ -334,9 +335,11 @@ def create_video_qa_prompt_v3(
     prompt += "Answer the question at the end. Do not output any timestamps."
     prompt += "First, describe in detail what happens at the start, middle, and end of the video. "
     prompt += "Then, think carefully step-by-step and put your thoughts under 'THINKING STEPS'. "
-    prompt += "After considering all information, provide a final answer under 'FINAL ANSWER'. Respond by filling up the sections in the response template."
+    prompt += "After considering all information, provide a final answer under 'FINAL ANSWER'. Respond by filling up the sections in the response template. "
     if caution_prompt:
-        prompt += "Be careful: questions and videos may be tricky. Resist misleading assumptions and do not always default to the most obvious answer. Reason about social behavior, context and other human factors related to popular social media, internet trends, an online engagement."
+        prompt += "Be careful: questions and videos may be tricky. Resist misleading assumptions and do not always default to the most obvious answer. Reason about social behavior, context and other human factors related to popular social media, internet trends, an online engagement. "
+    if detailed_response:
+        prompt += "Be as long and detailed as possible in your answer, and include specific examples, references, and explanations. "
     prompt += "\n\n"
     # Always include the title since it's required
     prompt += "VIDEO INFORMATION:\n"

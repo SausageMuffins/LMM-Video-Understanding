@@ -165,6 +165,18 @@ def main():
         default="models/gemini-2.0-flash",
         help="Model name for Gemini API (default: models/gemini-2.0-flash)."
     )
+    # detailed response
+    parser.add_argument(
+        "--detailed_response",
+        action="store_true",
+        help="If set, induce detailed response."
+    )
+    # no prompt
+    parser.add_argument(
+        "--no_prompt",
+        action="store_true",
+        help="If set, do not use prompt."
+    )
     args = parser.parse_args()
     
     # print args in a nice format
@@ -296,7 +308,8 @@ def main():
                 captions=captions if captions else None,
                 channel_name=channel_name,
                 question=combined_question,
-                caution_prompt=args.caution_prompt
+                caution_prompt=args.caution_prompt,
+                detailed_response=args.detailed_response
             )
         elif args.v2:
             prompt_text = prompts.create_video_qa_prompt_v2(
@@ -316,6 +329,8 @@ def main():
                 channel_name=channel_name,
                 question=combined_question
             )
+        if args.no_prompt:
+            prompt_text = combined_question
             
         if args.debug:
             # print url and question text
