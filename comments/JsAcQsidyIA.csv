@@ -1,4 +1,4 @@
-Author,Comment,LikeCount,PublishedAt
+﻿Author,Comment,LikeCount,PublishedAt
 @spelunkerd,"It was lucky that 3x+1 was a common factor, presumably that was the key.",1104,2022-08-10T15:16:06Z
 @karangujaran9899,"Best way to solve such questions is determine one root then use synthetic or long division to get rest of them<br>Here -1/3 is a clear root as <br>3(-1/3)^3+(-1/3)^2-15(-1/3)-5 = 0<br><br>And then do synthetic division,<br>Of main eq with (x+1/3) factor<br>You get 3x^2-15=0<br><br>X = +√5, -√5, -1/3",28,2024-03-10T10:19:59Z
 @grahamlyons8522,I doubt if that method applies to every third-degree polynomial.,630,2022-05-16T08:53:00Z

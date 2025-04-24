@@ -56,10 +56,10 @@ Our solution follows a multi-stage pipeline:
 *   **External Tools:**
     *   `ffmpeg`: Required for video processing (slowing down). Must be installed separately and accessible in the system's PATH.
 *   **APIs Used:**
-    *   Google Gemini API (specifically `gemini-2.5-pro-preview-03-25`)
+    *   Google Gemini API (specifically `gemini-2.5-pro-exp-03-25`)
     *   YouTube Data API v3
 *   **Models Used:**
-    *   `gemini-2.5-pro-preview-03-25` (via Google AI Studio / API)
+    *   `gemini-2.5-pro-exp-03-25` (via Google AI Studio / API)
 *   **Assets & Datasets:**
     *   `lmms-lab/AISG_Challenge` (Hugging Face Dataset): Contains the benchmark video URLs and questions. The script `download_vids_metadata.py` saves the relevant part as `challenge_data.csv`.
     *   YouTube Videos: Assumed to be pre-downloaded into the `videos_full/` directory based on the benchmark dataset URLs.
@@ -170,7 +170,7 @@ Execute the following steps sequentially from the root directory of the cloned r
       --video_metadata_path videos_full_slow_metadata.csv \
       --comments_dir comments \
       --output_csv_path results/challenge_data_gemini_pro_2.5_exp_slowVid_v3_full.csv \
-      --model_name models/gemini-2.5-pro-preview-03-25 \
+      --model_name models/gemini-2.5-pro-exp-03-25 \
       --v3 \
       --temperature 1.0 \
       # Add --rate_limit 2 if needed, e.g., 2 seconds between API calls
@@ -181,7 +181,7 @@ Execute the following steps sequentially from the root directory of the cloned r
     *   `videos_full_slow_metadata.csv` (from Step 3).
     *   `comments/` directory (from Step 2).
     *   Slowed videos in `videos_full_slow/` (referenced via metadata).
-*   **Action:** Iterates through `challenge_data.csv`. For each question (`qid`), it finds the corresponding slowed video and metadata, reads comments, constructs the `v3` prompt, uploads the video to Gemini, runs inference using `gemini-2.5-pro-preview-03-25`, parses the response, and saves results incrementally. Requires `GEMINI_API_KEY` in `.env`. Creates the `results/` directory if it doesn't exist.
+*   **Action:** Iterates through `challenge_data.csv`. For each question (`qid`), it finds the corresponding slowed video and metadata, reads comments, constructs the `v3` prompt, uploads the video to Gemini, runs inference using `gemini-2.5-pro-exp-03-25`, parses the response, and saves results incrementally. Requires `GEMINI_API_KEY` in `.env`. Creates the `results/` directory if it doesn't exist.
 *   **Output:** Creates `results/challenge_data_gemini_pro_2.5_exp_slowVid_v3_full.csv` containing the questions, original data, and the model's generated answers (including thinking steps, descriptions, and final answer).
 
 **Step 5: Convert to Submission Format**
