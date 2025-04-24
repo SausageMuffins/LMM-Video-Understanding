@@ -292,12 +292,17 @@ def main():
         video_description = metadata.get("description", "")
         captions = metadata.get("caption", "")
         channel_name = metadata.get("channel_name", "")
+        video_id = metadata.get("video_id", "")
         
         
         # Read comments file
-        clean_title = sanitize_filename(video_title)
-        comments_filename = f"{clean_title}.csv"
+        # clean_title = sanitize_filename(video_title)
+        clean_title = video_title
+        comments_filename = f"{video_id}.csv"
         comments = read_comments_file(comments_filename, args.comments_dir)
+        # print check to see if comments are retrieved successfully
+        
+        print(f"Retrieved comments for video ID={video_id}: {comments}")
         
         # Choose the appropriate prompt version
         if args.v3:
