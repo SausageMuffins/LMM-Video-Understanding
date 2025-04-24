@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 def parse_arguments():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description='Scrape YouTube comments from videos listed in a CSV file.')
-    parser.add_argument('--input', '-i', type=str, default='video_metadata.csv',
+    parser.add_argument('--input', '-i', type=str, default='video_full_metadata.csv',
                         help='Path to input CSV file (default: video_metadata.csv)')
     parser.add_argument('--output', '-o', type=str, default='comments',
                         help='Directory to save comment CSV files (default: comments)')
