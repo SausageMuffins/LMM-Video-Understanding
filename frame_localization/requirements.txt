@@ -1,0 +1,8 @@
+vllm
+transformers 
+open-clip-torch 
+opencv-python-headless
+pillow
+torch
+pandas
+google-generativeai
