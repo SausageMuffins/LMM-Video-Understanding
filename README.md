@@ -1,4 +1,4 @@
-# LMM-Video-Understanding
+# A&T: Augment and Think Before Answering
 National AI Student Challenge 2025 - TikTok Track
 
 ![Solution Architecture](./images/Tiktok%20Solution%20Architecture.png)
