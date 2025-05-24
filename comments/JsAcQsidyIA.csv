@@ -1,51 +1,51 @@
 ﻿Author,Comment,LikeCount,PublishedAt
-@spelunkerd,"It was lucky that 3x+1 was a common factor, presumably that was the key.",1104,2022-08-10T15:16:06Z
+@spelunkerd,"It was lucky that 3x+1 was a common factor, presumably that was the key.",1105,2022-08-10T15:16:06Z
 @karangujaran9899,"Best way to solve such questions is determine one root then use synthetic or long division to get rest of them<br>Here -1/3 is a clear root as <br>3(-1/3)^3+(-1/3)^2-15(-1/3)-5 = 0<br><br>And then do synthetic division,<br>Of main eq with (x+1/3) factor<br>You get 3x^2-15=0<br><br>X = +√5, -√5, -1/3",28,2024-03-10T10:19:59Z
 @grahamlyons8522,I doubt if that method applies to every third-degree polynomial.,630,2022-05-16T08:53:00Z
-@anmol-e7u,I hope these sums come to my Indian University exams 😂😂,133,2024-01-20T08:55:23Z
 @dityashinde8263,Your handwriting is good,29,2023-07-08T08:49:01Z
-@abhishekjha3576,"I wish JEE, ISI, IOQM, VITEEE, NEST asks these type of questions.",80,2024-02-05T15:24:25Z
-@willbagthegreat,I just learned this in algebra 2. Except unless it&#39;s a difference of two PERFECT squares we don&#39;t factor it more,97,2023-03-10T11:28:11Z
-@chrstfer2452,If youre gonna factor the x^2-5 you might as well pull a three out of 3x+1 so all the factors in parens are in terms of the roots of the polynomial,16,2022-08-17T18:21:56Z
+@anmol-e7u,I hope these sums come to my Indian University exams 😂😂,133,2024-01-20T08:55:23Z
 @zodon18,Watching from India 🇮🇳,94,2024-01-19T09:54:58Z
-@dipendrakumaryadav4989,Then please  solve this by using this method : factories: a^3-6a^2+11a-6,2,2024-08-23T10:59:41Z
-@dhruvaneja8987,Ans:(x²-5)(3x+1),4,2024-05-23T17:26:54Z
+@willbagthegreat,I just learned this in algebra 2. Except unless it&#39;s a difference of two PERFECT squares we don&#39;t factor it more,97,2023-03-10T11:28:11Z
+@abhishekjha3576,"I wish JEE, ISI, IOQM, VITEEE, NEST asks these type of questions.",80,2024-02-05T15:24:25Z
 @telong3346,I was curious how this solved in YouTube shorts.,3,2024-09-29T18:02:33Z
-@mrsrenu9988,Thanks dude 😎,2,2024-03-01T13:37:00Z
-@arjunmahato7593,Nice explanation sir🎉,2,2023-09-28T14:47:53Z
+@chrstfer2452,If youre gonna factor the x^2-5 you might as well pull a three out of 3x+1 so all the factors in parens are in terms of the roots of the polynomial,16,2022-08-17T18:21:56Z
+@renu_garg,Thanks dude 😎,2,2024-03-01T13:37:00Z
+@dhruvaneja8987,Ans:(x²-5)(3x+1),4,2024-05-23T17:26:54Z
+@successclub03,Indians🗿<br>👇,4,2024-08-14T09:16:42Z
 @vedant--ff4025,💛Nice method 🧡💥💫,2,2024-06-10T10:02:40Z
-@boringgameandlife,Just use factor theorem and check possible factors,0,2025-02-15T08:34:39Z
-@indumoriya8217,"no bro , this method are apply in only few questions but not in all questions lik3  ::-- x^3-3x^2-9x-5 and many more........",2,2023-04-04T14:19:18Z
-@vivekrana2405,Your writing 🤩,0,2024-12-25T07:57:14Z
-@EmmsterGD,This only works if it nicely factors. Otherwise its algebraic long division and guessing the initial root,5,2022-09-21T06:22:40Z
+@dipendrakumaryadav4989,Then please  solve this by using this method : factories: a^3-6a^2+11a-6,2,2024-08-23T10:59:41Z
 @DriftinVr,Oh easy factory by first doing<br>X^2(3x+1)-5(3x+1)<br>(X^2-5)(3x+1)<br>You could factor more and could make it (sqrt(5)^2) and be a different of squares<br>(X+sqrt(5))(x-sqrt(5))(3x+1)<br>But also this is a very lucky problem with having just 3x+1 since if you had a different set then it becomes way longer to factor,1,2024-09-23T02:27:30Z
-@Vicky-f7k4p,Nice method dude<br>Keep it up,4,2022-03-26T05:00:29Z
-@Damememan577,All I knew before was combining like terms,1,2024-10-08T03:30:24Z
-@_marukoy,Thanks!,3,2022-03-26T15:57:35Z
-@MaryamZehra-w8s,thankyousomuch! I was trying to solve question for hours and your this method just help me out thankyou,0,2023-08-29T08:29:38Z
-@paulestrada961,Grear explanation. This is a simple as it can get,0,2024-04-28T08:43:12Z
-@SaranshBhardwaje-mc2,Thank you🙏💕❤,0,2024-06-25T15:18:09Z
-@AnwarulHaqe-s2k,Wow what a good explanation 😮,0,2023-07-25T14:26:54Z
+@vivekrana2405,Your writing 🤩,0,2024-12-25T07:57:14Z
+@indumoriya8217,"no bro , this method are apply in only few questions but not in all questions lik3  ::-- x^3-3x^2-9x-5 and many more........",2,2023-04-04T14:19:18Z
 @AalokSinghYadav999,Thank you bhaiya ❤,3,2023-10-05T01:34:44Z
+@arjunmahato7593,Nice explanation sir🎉,2,2023-09-28T14:47:53Z
 @tubayildiztas1360,Nice handwriting ❤,1,2023-09-22T00:55:22Z
-@jovx7,sometimes this method is just confusing so better do synthetic division.,0,2024-01-01T11:17:54Z
-@Tarun-di1lq,Bro you made me understand this shit thanks bri,0,2024-05-03T22:28:37Z
-@navaneethsivaelango3100,Very very thanks. I was struggling in this problem but your solution gave me an idea about this. Thank you once again. 😊😊😊😊😊😊❤❤❤❤❤❤,0,2023-09-18T18:34:05Z
-@sahinkhan-vo5hc,watching from Bangladesh 🇧🇩 ❤,1,2024-06-22T09:39:47Z
-@grafianantook9937,Thanks you have made my doubt a huge doubt,0,2023-12-07T11:42:54Z
-@RigoVids,You can already see that this is one of the easier to factor 3rd degree polynomials,0,2024-01-01T18:47:47Z
-@almostanijjony9545,Thank you ❤,0,2023-11-16T09:57:06Z
-@AlexD02721,Why don’t we stop at x^2 - 5? I don’t usually see irrationals in factors; or complex numbers either. But this method does help in identifying the roots without needing the quadratic formula.,1,2024-07-15T23:37:15Z
-@blessly_music,Incredible🔥,0,2023-11-16T19:13:16Z
-@nadiaconseillant8616,Brings me back.,0,2024-11-16T07:28:10Z
 @gnamp,Polynomiuuuhhl. Tree treee treeeeee.,25,2022-10-10T23:18:59Z
-@rajkotalovic9784,A sta je resenje ovog zadatka?,1,2024-10-05T23:49:48Z
-@zekromsigma8007,Indians🗿<br>👇,4,2024-08-14T09:16:42Z
+@AnwarulHaqe-s2k,Wow what a good explanation 😮,0,2023-07-25T14:26:54Z
+@Damememan577,All I knew before was combining like terms,1,2024-10-08T03:30:24Z
+@sahinkhan-vo5hc,watching from Bangladesh 🇧🇩 ❤,1,2024-06-22T09:39:47Z
+@Vicky-f7k4p,Nice method dude<br>Keep it up,4,2022-03-26T05:00:29Z
+@paulestrada961,Grear explanation. This is a simple as it can get,0,2024-04-28T08:43:12Z
+@RigoVids,You can already see that this is one of the easier to factor 3rd degree polynomials,0,2024-01-01T18:47:47Z
+@EmmsterGD,This only works if it nicely factors. Otherwise its algebraic long division and guessing the initial root,5,2022-09-21T06:22:40Z
+@nadiaconseillant8616,Brings me back.,0,2024-11-16T07:28:10Z
+@grafianantook9937,Thanks you have made my doubt a huge doubt,0,2023-12-07T11:42:54Z
+@_marukoy,Thanks!,3,2022-03-26T15:57:35Z
+@davidombegera4987,"Go slowly, step by step, for slow learners 🤣",1,2024-08-14T18:30:53Z
+@navaneethsivaelango3100,Very very thanks. I was struggling in this problem but your solution gave me an idea about this. Thank you once again. 😊😊😊😊😊😊❤❤❤❤❤❤,0,2023-09-18T18:34:05Z
+@AlexD02721,Why don’t we stop at x^2 - 5? I don’t usually see irrationals in factors; or complex numbers either. But this method does help in identifying the roots without needing the quadratic formula.,1,2024-07-15T23:37:15Z
+@jovx7,sometimes this method is just confusing so better do synthetic division.,0,2024-01-01T11:17:54Z
+@aarnaabhardwaj-diybutterfl2643,I live in India we learnt this in 5 th grade 😂,4,2024-09-26T18:25:55Z
 @Gasmaskbunny_,What do you do if in the second step the parentheses don’t match?,0,2025-03-18T21:17:22Z
-@Kumari_Dipshikha33,Thanks a lot ❤,2,2023-05-04T18:25:53Z
+@boringgameandlife,Just use factor theorem and check possible factors,0,2025-02-15T08:34:39Z
+@Tarun-di1lq,Bro you made me understand this shit thanks bri,0,2024-05-03T22:28:37Z
 @KnowledgeableLatterDaySaint,Where did you get the one from?,0,2024-07-20T19:15:33Z
-@FERMANMALINGIHARABE,It&#39;s an amazing method to solve the problen,0,2024-05-17T22:26:40Z
-@ShaynaSleman,X^3-8x^2+4x+48=0,0,2024-06-11T15:09:52Z
-@kalpajitnath_the_artist,Thank you sir,0,2024-02-17T13:15:37Z
-@roniganot,Can you also solve it by using Bézout&#39;s theorem?,0,2024-02-06T20:51:50Z
-@RahulValleti,thanks i need this so much thanks,0,2023-10-25T10:01:16Z
+@LawrGmD,I had a mini heart attack when I heard &quot;3x+1&quot;,0,2024-05-06T15:35:11Z
+@Kumari_Dipshikha33,Thanks a lot ❤,2,2023-05-04T18:25:53Z
+@unitedstatesofindia1460,Meanwhile indians and South Koreans kids be like ..... Why he lifting pen for such an easy question,11,2024-02-10T09:32:00Z
+@De1shAPS,Thank you sir❤<br>                          - FROM INDIA,0,2024-01-30T17:47:46Z
+@rajkotalovic9784,A sta je resenje ovog zadatka?,1,2024-10-05T23:49:48Z
+@SaranshBhardwaje-mc2,Thank you🙏💕❤,0,2024-06-25T15:18:09Z
+@kiddflxcko2439,"Bro just showed me how to solve my calculus problems in a simple manner without banging my head against the wall, I appreciate it🐧",0,2024-04-08T17:49:36Z
+@MaryamZehra-w8s,thankyousomuch! I was trying to solve question for hours and your this method just help me out thankyou,0,2023-08-29T08:29:38Z
+@blessly_music,Incredible🔥,0,2023-11-16T19:13:16Z
