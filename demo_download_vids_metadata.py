@@ -110,7 +110,7 @@ print("Saving metadata to video_full_metadata.csv...")
 pd.DataFrame(video_data).to_csv(
     "video_full_metadata.csv", index=False, encoding="utf-8-sig"
 )
-print("Saving errors to video_errors.csv...")
+# print("Saving errors to video_errors.csv...")
 pd.DataFrame(failed_urls).to_csv("video_errors.csv", index=False, encoding="utf-8-sig")
 
 print("Done.")
