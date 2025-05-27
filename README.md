@@ -116,7 +116,26 @@ Our solution follows a multi-stage pipeline:
         ```
     *   Follow the prompts to enter your Hugging Face token.
 
-## How to Reproduce Results
+## (NEW) How to Reproduce Results (Bash Script)
+
+After completing all the **Setup Instructions** (cloning, installing dependencies, setting up API keys, and downloading the videos into the `videos_full` directory), you can replicate the entire pipeline by running a single command from the root directory.
+
+* **Command:**
+    ```bash
+    bash run.sh
+    ```
+* **Action:**
+    This script automates the entire workflow by sequentially executing all necessary Python scripts. You can monitor the progress of each stage in your terminal. The steps include:
+    1.  **Fetching Metadata:** Running `download_vids_metadata.py`.
+    2.  **Scraping Comments:** Running `yt_comment_scraper.py`.
+    3.  **Slowing Videos:** Running `create_slower_vids.py`.
+    4.  **Running Inference:** Executing `gemini.py` to get predictions.
+    5.  **Formatting Submission:** Using `convert_to_upload_format.py` to create the final file.
+* **Output:**
+    The final submission-ready file, `pred_gemini_pro_2.5_exp_slowVid_v3_full.csv`, will be created in the `submissions/` directory. **This is the file you should upload to the challenge platform.**
+
+
+## (OLD) How to Reproduce Results (Individual Python Script)
 
 Execute the following steps sequentially from the root directory of the cloned repository. Ensure your virtual environment is activated, the `.env` file is correctly configured, you are logged into Hugging Face (`huggingface-cli login`), and the `videos_full/` directory exists with the pre-downloaded videos.
 
