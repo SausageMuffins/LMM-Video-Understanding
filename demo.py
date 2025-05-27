@@ -1,6 +1,7 @@
 import streamlit as st  # UI library for building interactive web apps
 import subprocess  # Run shell commands and external processes
 import os  # Interact with the operating system
+import pandas as pd  # For loading CSV comments
 
 
 def run_step(command, step_name):
@@ -33,20 +34,32 @@ def run_step(command, step_name):
             process.wait()
             # Final status
             if process.returncode == 0:
-                st.success(f"{step_name} completed successfully.")
-
                 # showing the video
                 if step_name == "Step 0: Download metadata":
                     video_path = os.path.join("demo", "videos_full", "HsXS1Qt11cU.mp4")
                     if os.path.exists(video_path):
-                        st.video(video_path)
+                        col1, col2 = st.columns([1, 3])
+                        with col1:
+                            st.video(video_path)
+
+                # show the top 10 comments
+                st.success(f"{step_name} completed successfully.")
+                if step_name == "Step 1: Scrape YouTube comments":
+                    comments_file = os.path.join("demo", "comments", "HsXS1Qt11cU.csv")
+                    if os.path.exists(comments_file):
+                        df_comments = pd.read_csv(comments_file)
+                        st.write("Top 10 Comments:")
+                        st.table(df_comments.head(10))
+
+                # show the slowed video
                 elif step_name == "Step 2: Create slowed-down videos":
                     video_path = os.path.join(
                         "demo", "videos_full_slow", "HsXS1Qt11cU.mp4"
                     )
                     if os.path.exists(video_path):
-                        st.video(video_path)
-
+                        col1, col2 = st.columns([1, 3])
+                        with col1:
+                            st.video(video_path)
             else:
                 st.error(f"{step_name} failed with exit code {process.returncode}.")
         except Exception as e:

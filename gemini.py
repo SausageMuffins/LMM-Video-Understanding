@@ -172,9 +172,9 @@ def main():
     args = parser.parse_args()
 
     # print args in a nice format
-    print(f"Arguments:")
-    for arg in vars(args):
-        print(f"  {arg}: {getattr(args, arg)}")
+    # print(f"Arguments:")
+    # for arg in vars(args):
+    #     print(f"  {arg}: {getattr(args, arg)}")
 
     # -----------------------------
     # Load environment and configure Gemini
