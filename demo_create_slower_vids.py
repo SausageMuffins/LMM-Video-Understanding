@@ -18,6 +18,45 @@ import csv  # Imported in the notebook, kept for consistency though not directly
 import shutil  # Imported in the notebook, kept for consistency though not directly used
 import argparse  # Added for potential future command-line arguments, but not strictly required by the prompt
 
+
+def parse_arguments():
+    """
+    Parse command-line arguments for slowing videos.
+    """
+    parser = argparse.ArgumentParser(
+        description="Slow down videos and adjust SRT captions."
+    )
+    parser.add_argument(
+        "--input_metadata",
+        "-m",
+        type=str,
+        required=True,
+        help="Path to input metadata CSV. Must contain 'video_path' and 'caption' columns.",
+    )
+    parser.add_argument(
+        "--input_dir",
+        "-i",
+        type=str,
+        required=True,
+        help="Base directory for input video files.",
+    )
+    parser.add_argument(
+        "--output_dir",
+        "-o",
+        type=str,
+        required=True,
+        help="Directory to save slowed-down videos and updated metadata.",
+    )
+    parser.add_argument(
+        "--speed_factor",
+        "-s",
+        type=float,
+        default=0.5,
+        help="Factor to slow down videos (e.g., 0.5 for half speed).",
+    )
+    return parser.parse_args()
+
+
 # --- Function Definitions ---
 
 
@@ -166,12 +205,17 @@ def main():
     """
     Main function to execute the video processing workflow.
     """
-    # --- Configuration (Defaults from Notebook) ---
-    input_metadata_file = "video_full_metadata.csv"
-    input_video_base_dir = "videos_full/"  # Inferred from replace operation
-    output_video_base_dir = "videos_full_slow/"
-    output_metadata_file = "videos_full_slow_metadata.csv"
-    default_speed_factor = 0.5
+    # Parse arguments
+    args = parse_arguments()
+    input_metadata_file = args.input_metadata
+    input_video_base_dir = args.input_dir
+    output_video_base_dir = args.output_dir
+    speed_factor = args.speed_factor
+
+    # Save updated metadata in the same folder as the input metadata
+    output_metadata_file = os.path.join(
+        os.path.dirname(input_metadata_file), os.path.basename(input_metadata_file)
+    )
 
     # --- Setup ---
     print(f"Creating output folder: {output_video_base_dir}")
@@ -202,7 +246,17 @@ def main():
 
     # Use tqdm for progress bar
     for idx, row in tqdm(df.iterrows(), total=len(df), desc="Processing Videos"):
-        video_path = row["video_path"]
+        raw_path = row["video_path"]
+        # Resolve video_path relative to input_dir if file not found directly
+        if os.path.exists(raw_path):
+            video_path = raw_path
+        else:
+            # try using basename under input_video_base_dir
+            candidate = os.path.join(input_video_base_dir, os.path.basename(raw_path))
+            if os.path.exists(candidate):
+                video_path = candidate
+            else:
+                video_path = raw_path  # leave as-is, will trigger 'not found' below
 
         # Basic validation of video path
         if not isinstance(video_path, str) or not video_path:
@@ -220,18 +274,18 @@ def main():
             df.at[idx, "processing_error"] = "Video file not found"
             continue
 
-        # Create output path based on the structure implied by the notebook's replace()
+        # Determine output path: preserve directory structure only if under input_dir
         try:
-            # Make the replacement more robust
             relative_path = os.path.relpath(video_path, input_video_base_dir)
+            # If computed relative path goes outside the base dir, treat as not contained
+            if relative_path.startswith(os.pardir):
+                raise ValueError
             output_path = os.path.join(output_video_base_dir, relative_path)
-            # Ensure the output directory for this specific file exists
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        except (
-            ValueError
-        ):  # Handles case where video_path is not within input_video_base_dir
+        except Exception:
+            # Fallback: place slowed video directly in output_dir
             print(
-                f"Warning: Video path '{video_path}' does not seem to be relative to '{input_video_base_dir}'. Constructing output path differently."
+                f"Warning: cannot map '{video_path}' under '{input_video_base_dir}'. Using flat output structure."
             )
             output_filename = os.path.basename(video_path)
             output_path = os.path.join(output_video_base_dir, output_filename)
@@ -240,7 +294,7 @@ def main():
         # Slow down the video
         try:
             print(f"\nProcessing [{idx+1}/{len(df)}]: {video_path} -> {output_path}")
-            slow_down_video(video_path, output_path, speed_factor=default_speed_factor)
+            slow_down_video(video_path, output_path, speed_factor=speed_factor)
 
             # Update metadata upon successful processing
             df.at[idx, "slowed_video_path"] = output_path
@@ -251,7 +305,7 @@ def main():
             if pd.notna(row["caption"]) and isinstance(row["caption"], str):
                 print(f"Adjusting captions for {video_path}...")
                 adjusted_caption = adjust_srt_timestamps(
-                    row["caption"], speed_factor=default_speed_factor
+                    row["caption"], speed_factor=speed_factor
                 )
                 df.at[idx, "slowed_caption"] = adjusted_caption
             else:
@@ -289,8 +343,8 @@ def main():
         # Original notebook did it for all. Let's stick to that.
         # Ensure duration is numeric before multiplying
         output_df["duration"] = pd.to_numeric(output_df["duration"], errors="coerce")
-        if default_speed_factor != 0:
-            output_df["duration"] = output_df["duration"] / default_speed_factor
+        if speed_factor != 0:
+            output_df["duration"] = output_df["duration"] / speed_factor
         else:
             print("Warning: Speed factor is 0, duration not adjusted.")
     else:
