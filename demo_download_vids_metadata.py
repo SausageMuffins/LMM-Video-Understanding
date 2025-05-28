@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fetch metadata for a single YouTube video ID: HsXS1Qt11cU. This is for the demo for the presentation at AISDC
+Fetch metadata for a YouTube video ID specified as a command-line argument.
 Assumes `challenge_data.csv` already exists and contains `youtube_url` and `duration` columns.
 Outputs:
  - video_full_metadata.csv
@@ -9,13 +9,22 @@ Outputs:
 """
 
 import os
+import sys
 import pandas as pd
 from pytubefix import YouTube  # fixed pytube client
 from pytubefix.cli import on_progress
 
-VIDEO_ID = "HsXS1Qt11cU"
-YOUTUBE_URL = f"https://www.youtube.com/shorts/HsXS1Qt11cU"
+# Get video ID from command line argument, or use default
+if len(sys.argv) > 1:
+    VIDEO_ID = sys.argv[1]
+else:
+    VIDEO_ID = "HsXS1Qt11cU"  # Default fallback
+    
+YOUTUBE_URL = f"https://www.youtube.com/shorts/{VIDEO_ID}"
 VIDEO_FOLDER = "videos_full"
+
+# Print the video ID being processed for debugging
+print(f"Starting process for video ID: {VIDEO_ID}")
 
 # Ensure output folder exists
 os.makedirs(VIDEO_FOLDER, exist_ok=True)

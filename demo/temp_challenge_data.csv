@@ -1,0 +1,8 @@
+qid,question,question_prompt,youtube_url
+0256-2,Does the ping-pong ball bounce 17 times on the ground before entering the cup?,Please state your answer with a brief explanation.,https://www.youtube.com/shorts/uPIpFgh_DPU
+0256-7,"How many times does the ping-pong ball bounce on the ground before entering the cup?
+A. 13
+B. 10
+C. 19
+D. 17 E. None of the above
+Select one best answer to the above multiple-choice question based on the video. Respond with only the letter (A, B, C, D or E) of the correct option.",,https://www.youtube.com/shorts/uPIpFgh_DPU

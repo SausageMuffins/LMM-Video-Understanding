@@ -169,6 +169,11 @@ def main():
     parser.add_argument(
         "--no_prompt", action="store_true", help="If set, do not use prompt."
     )
+    parser.add_argument(
+        "--filter_video_id",
+        type=str,
+        help="Process only videos containing this ID",
+    )
     args = parser.parse_args()
 
     # print args in a nice format
@@ -208,6 +213,10 @@ def main():
 
     print(f"Reading video metadata from {args.video_metadata_path}")
     df_video_metadata = pd.read_csv(args.video_metadata_path).copy()
+
+    # Then in the processing code:
+    if args.filter_video_id:
+        df_challenge_data = df_challenge_data[df_challenge_data["youtube_url"].str.contains(args.filter_video_id)]
 
     # Add all needed answer columns if missing
     if "answer" not in df_challenge_data.columns:

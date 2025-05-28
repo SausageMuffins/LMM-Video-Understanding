@@ -1,0 +1,9 @@
+﻿qid,video_id,question_type,capability,question,duration,question_prompt,answer,youtube_url
+0551-0,HsXS1Qt11cU,Primary Open-ended Question,Element Attributes,What is the state of on-and-off of the switches on the wall in the scene with the woman kneeling?,17.62,Please state your answer with a brief explanation.,,https://www.youtube.com/shorts/HsXS1Qt11cU
+0551-3,HsXS1Qt11cU,Wrongly-led Open-ended Question,Element Attributes,Are both switches on the wall in the scene with the woman kneeling in the same position?,17.62,Please state your answer with a brief explanation.,,https://www.youtube.com/shorts/HsXS1Qt11cU
+0551-7,HsXS1Qt11cU,Multiple-choice Question with a Single Correct Answer,Element Attributes,"What is the state of the switches on the wall in the scene with the woman kneeling?
+A. Both are on.
+B. Both are off.
+C. Both are in the middle position.
+D. One is on, and one is off.",17.62,"E. None of the above
+Select one best answer to the above multiple-choice question based on the video. Respond with only the letter (A, B, C, D or E) of the correct option.",,https://www.youtube.com/shorts/HsXS1Qt11cU

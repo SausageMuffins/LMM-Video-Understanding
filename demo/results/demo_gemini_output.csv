@@ -1,33 +1,68 @@
-qid,video_id,question_type,capability,question,duration,question_prompt,answer,youtube_url,thinking_steps,video_start,video_middle,video_end
-0551-0,HsXS1Qt11cU,Primary Open-ended Question,Element Attributes,What is the state of on-and-off of the switches on the wall in the scene with the woman kneeling?,17.62,Please state your answer with a brief explanation.,"In the scene where the woman is kneeling, there is a single white rocker switch visible on the wall to her right. The top part of the switch is pressed in, and the bottom part is protruding. This indicates that the switch is in the **on** position.",https://www.youtube.com/shorts/HsXS1Qt11cU,"1.  The question asks about the state of switches on the wall in the scene where the woman is kneeling.
-2.  I need to locate the specific scene in the video where the woman is kneeling. This scene starts around the 0:23 mark.
-3.  In this scene, the woman is kneeling on a light-colored tiled floor. To her right (the viewer's right), there is a wall, and next to that, a brown wooden cabinet or wardrobe.
-4.  On the wall, to the left of the brown cabinet and slightly above and behind the woman's right shoulder, there is a single white light switch.
-5.  The light switch is a rocker-style switch.
-6.  I need to observe the position of the rocker. The top part of the rocker switch is pressed inwards, and the bottom part is protruding outwards.
-7.  For most standard rocker light switches, pressing the top part in turns the light/circuit ""on,"" and pressing the bottom part in turns it ""off.""
-8.  Therefore, since the top part is pressed in, the switch is in the ""on"" position.","The video begins with a woman standing in a kitchen. Above her head are emojis of a sponge, toothbrush, soap bar, a woman's face, and a lotion bottle. She is holding a small plate with a yellow and green dish sponge on it. She picks up the sponge, takes a bite, and chews it, revealing it is a cake.","The scene transitions to the woman at a kitchen sink with the tap running. She reaches for a Dettol hand soap dispenser, picks it up, and then takes a bite out of it, showing it is also a cake. Next, a bowl of what appears to be noodles with vegetables and meat is shown on a wooden table. A knife cuts into the ""noodles,"" revealing that the entire bowl and its contents are a cake. Following this, the woman is shown kneeling on a tiled floor next to a doorway and a brown cabinet. She takes a green cleaning cloth from a blue bucket, wrings it out, and then eats it, demonstrating it is a cake.","After the woman eats the green cloth cake, the video focuses on the blue bucket with a maroon cloth draped over its side. A knife cuts into the side of the bucket and the maroon cloth, revealing that the entire bucket and the cloth are also made of cake, specifically a layered yellow cake with white frosting. The video ends with this reveal."
-0551-3,HsXS1Qt11cU,Wrongly-led Open-ended Question,Element Attributes,Are both switches on the wall in the scene with the woman kneeling in the same position?,17.62,Please state your answer with a brief explanation.,"No, the two switches on the wall in the scene with the woman kneeling are not in the same position. The top switch has its lower portion pressed in, while the bottom switch has its upper portion pressed in, indicating they are in opposite states.",https://www.youtube.com/shorts/HsXS1Qt11cU,"1.  Identify the scene with the woman kneeling. This occurs around 0:23-0:30.
-2.  Locate the switches on the wall in this scene. They are on the wall to the woman's right (our left of the screen, next to a wardrobe/cabinet). There are two white rocker switches, one above the other.
-3.  Observe the position of the top switch. The bottom part of the rocker switch is pressed inwards.
-4.  Observe the position of the bottom switch. The top part of the rocker switch is pressed inwards.
-5.  Compare the two positions. Since one has the bottom part pressed in and the other has the top part pressed in, they are in opposite positions.","The video begins with a woman standing in a kitchen. She holds a small plate with a yellow and green sponge on it. She then lifts the sponge to her mouth and takes a bite, revealing it's a cake. Emojis of a sponge, toothbrush, soap, a woman, and a lotion bottle are overlaid on the top left of the screen.","The scene transitions to a kitchen sink. The woman reaches for a Dettol liquid soap dispenser next to the running tap. She picks it up, shows it to the camera, and then pretends to take a bite out of the pump, revealing the dispenser is also a cake. Next, a bowl of spaghetti with sauce and mushrooms is shown on a wooden table. A knife cuts into it, revealing it's a cake. The video then shows the woman kneeling on a tiled floor by a doorway. She takes a green cloth from a blue bucket that also contains a red cloth. She wrings the green cloth and then takes a bite out of it, showing it's cake.","The final scene shows a close-up of the blue bucket with the green and red cloths. A knife cuts into the side of the bucket, revealing that the bucket and its contents (the cloths) are also made of cake, with layers of sponge visible."
-0551-7,HsXS1Qt11cU,Multiple-choice Question with a Single Correct Answer,Element Attributes,"What is the state of the switches on the wall in the scene with the woman kneeling?
-A. Both are on.
-B. Both are off.
-C. Both are in the middle position.
-D. One is on, and one is off.",17.62,"E. None of the above
-Select one best answer to the above multiple-choice question based on the video. Respond with only the letter (A, B, C, D or E) of the correct option.",B,https://www.youtube.com/shorts/HsXS1Qt11cU,"1.  Identify the specific scene mentioned in the question: ""the scene with the woman kneeling"".
-2.  Locate this scene in the video. The woman is kneeling on a tiled floor, near a door and a cabinet, with a blue bucket next to her. This occurs around the 0:24-0:30 mark.
-3.  Look for switches on the wall in this scene. To the woman's right (viewer's right, behind her and the bucket), there is a white double light switch on the wall.
-4.  Observe the position of each switch. Both switches are rectangular rocker switches. The top switch is pressed down at the bottom, meaning its top part is up. The bottom switch is also pressed down at the bottom, meaning its top part is up.
-5.  Interpret the switch positions. For standard rocker switches of this type in many regions, pressing the bottom part of the switch down turns it OFF, and pressing the top part down turns it ON. If the bottom is down, it means the switch is in the OFF position.
-6.  Therefore, both the top and bottom switches are in the 'down' (bottom part pressed in) position, which typically signifies 'off'.
-7.  Compare this observation with the given multiple-choice options:
-    A. Both are on. (This would mean both are in the 'up' position, i.e., top part pressed in).
-    B. Both are off. (This would mean both are in the 'down' position, i.e., bottom part pressed in).
-    C. Both are in the middle position. (They are clearly in one of the two definite positions, not in the middle).
-    D. One is on, and one is off. (They are both in the same position).
-8.  Based on the observation that both switches have their bottom part pressed in, they are both in the 'off' position.","The video starts with a woman standing in a kitchen. Above her head are emojis of a sponge, toothbrush, soap, a woman's face, and a lotion bottle. She is holding a small plate with a yellow and green dish sponge on it. She picks up the sponge and takes a bite out of it, revealing it to be a cake. She then chews and makes a pleased expression.","The scene changes to the woman by a kitchen sink. The tap is running. She reaches for a Dettol hand soap dispenser, picks it up, shows it to the camera, and then takes a bite out of the pump dispenser, revealing it's also a cake. She chews and smiles.
-Next, a bowl of spaghetti with meat and vegetables is shown on a wooden table. A knife cuts into it, revealing the ""spaghetti"" is a cake with layers.
-The scene then shows the woman kneeling on a tiled floor in a hallway, next to a blue bucket containing a red and a green cloth. She takes out the green cloth, wrings it, and then takes a bite out of it, showing it's also cake.","The video ends with a close-up of the blue bucket with the cloths. A knife cuts into the side of the bucket, revealing that the bucket itself, along with the cloths inside, is also a cake. The cake has layers of sponge and cream."
+qid,question,question_prompt,youtube_url,answer,thinking_steps,video_start,video_middle,video_end
+0256-2,Does the ping-pong ball bounce 17 times on the ground before entering the cup?,Please state your answer with a brief explanation.,https://www.youtube.com/shorts/uPIpFgh_DPU,"No, the ping-pong ball does not bounce 17 times on the ground before entering the cup. It bounces 23 times on the stairs and the landing (which constitutes the ground in this context) before successfully landing in the cup.","1.  Understand the question: The question asks if the ping-pong ball bounces exactly 17 times on the ground (stairs and landing) *before* entering the cup.
+2.  Watch the video carefully, focusing on the bounces. The video is in slow motion, which aids in counting.
+3.  Count each distinct impact of the ball on a stair or the landing area before it enters the cup.
+    *   Bounce 1: On the first stair it hits.
+    *   Bounce 2: On the next stair.
+    *   Bounce 3: On the next stair.
+    *   Bounce 4: On the next stair.
+    *   Bounce 5: On the next stair.
+    *   Bounce 6: On the next stair.
+    *   Bounce 7: On the next stair.
+    *   Bounce 8: On the next stair.
+    *   Bounce 9: On the next stair.
+    *   Bounce 10: On the next stair.
+    *   Bounce 11: On the next stair.
+    *   Bounce 12: On the next stair.
+    *   Bounce 13: On the next stair.
+    *   Bounce 14: On the next stair.
+    *   Bounce 15: On the next stair.
+    *   Bounce 16: On the next stair.
+    *   Bounce 17: On the next stair.
+    *   Bounce 18: On the next stair.
+    *   Bounce 19: On the next stair.
+    *   Bounce 20: On the landing at the bottom of the stairs.
+    *   Bounce 21: On the landing.
+    *   Bounce 22: On the landing.
+    *   Bounce 23: On the landing, immediately before entering the cup.
+4.  The total count of bounces on the ground (stairs and landing) before entering the cup is 23.
+5.  Compare this count to the number given in the question (17).
+6.  Since 23 is not equal to 17, the statement in the question is false.
+7.  Formulate the answer with a ""No"" and a brief explanation stating the actual count.","The video begins with a young boy kneeling on a wooden staircase, facing the camera. He is holding an orange ping-pong ball and says, ""Count the bounces!"" Text overlaying the video also says ""Count the bounces!"" with a ping-pong paddle and ball emoji.","The camera angle shifts to look down the long flight of wooden stairs. The boy releases the orange ping-pong ball. The ball travels down the stairs, bouncing on each step in slow motion. A clear cup is visible on the landing at the bottom of the staircase, which is the target for the ball.","The ping-pong ball continues to bounce down the stairs and onto the landing. After several bounces on the landing, it successfully lands inside the clear cup. Text ""How many?"" appears on the screen. The boy, back in view from the top of the stairs, exclaims ""Oh!"" in excitement."
+0256-7,"How many times does the ping-pong ball bounce on the ground before entering the cup?
+A. 13
+B. 10
+C. 19
+D. 17 E. None of the above
+Select one best answer to the above multiple-choice question based on the video. Respond with only the letter (A, B, C, D or E) of the correct option.",,https://www.youtube.com/shorts/uPIpFgh_DPU,D,"1.  The question asks for the number of times the ping-pong ball bounces on the ground before entering the cup. ""Ground"" in this context includes the stairs and the landing at the bottom of the stairs.
+2.  I need to watch the video carefully and count each bounce.
+3.  First, count the bounces on the stairs:
+    - Bounce 1 (on the first stair down)
+    - Bounce 2
+    - Bounce 3
+    - Bounce 4
+    - Bounce 5
+    - Bounce 6
+    - Bounce 7
+    - Bounce 8
+    - Bounce 9
+    - Bounce 10
+    - Bounce 11
+    - Bounce 12
+    - Bounce 13 (on the last stair before the landing)
+    So, there are 13 bounces on the stairs.
+4.  Next, count the bounces on the landing before the ball enters the cup:
+    - Bounce 14 (first bounce on the landing)
+    - Bounce 15 (second bounce on the landing)
+    - Bounce 16 (third bounce on the landing)
+    - Bounce 17 (fourth bounce on the landing)
+    After the 17th bounce, the ball goes into the cup.
+5.  Total number of bounces on the ground = Bounces on stairs + Bounces on landing
+    Total bounces = 13 + 4 = 17.
+6.  Compare this count with the given multiple-choice options:
+    A. 13
+    B. 10
+    C. 19
+    D. 17
+    E. None of the above
+7.  The calculated number of bounces is 17, which matches option D.","The video starts with a young boy sitting at the top of a wooden staircase. He is holding an orange ping-pong ball. Text overlay on the screen says ""Count the bounces!"" with a ping-pong paddle and ball emoji. The boy looks at the camera and says, ""Count the bounces!""","The boy throws the ping-pong ball down the staircase. The camera angle shifts to look down the stairs, following the ball's trajectory. The ball bounces on each individual wooden stair as it descends. The bounces are audible. There is a clear cup visible on the landing at the bottom of the stairs.","The ping-pong ball reaches the landing at the bottom of the stairs. It bounces multiple times on the wooden landing before finally going into the clear cup. After the ball enters the cup, text overlay appears saying ""How many?"". The boy at the top of the stairs can be heard exclaiming in surprise and excitement."

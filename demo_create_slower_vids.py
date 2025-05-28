@@ -54,6 +54,11 @@ def parse_arguments():
         default=0.5,
         help="Factor to slow down videos (e.g., 0.5 for half speed).",
     )
+    parser.add_argument(
+        "--video_id",
+        type=str,
+        help="Process only this specific video ID",
+    )
     return parser.parse_args()
 
 
@@ -231,6 +236,9 @@ def main():
     except Exception as e:
         print(f"Error reading metadata file {input_metadata_file}: {e}")
         return
+    
+    if args.video_id:
+        df = df[df["video_path"].str.contains(args.video_id)]
 
     # --- Prepare DataFrame for Processing ---
     # Create copies of columns to modify safely
